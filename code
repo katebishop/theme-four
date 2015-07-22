@@ -542,7 +542,7 @@
             <!--- sidebar ---><div class="column"><div class="fixed">
             <center><img src="{image:Sidebar}" id="main" /></center>
                 <div class="menu">
-                    <a href="/">index</a><a href="/message">message</a><a href="{text:Link01URL}">{text:Link01Title}</a><a href="{text:Link02URL}">{text:Link02Title}</a><a href="{text:Link03URL}">{text:Link03Title}</a><a href="{text:Link04URL}">{text:Link04Title}</a>
+                    <a href="/">index</a><a href="/ask">message</a><a href="{text:Link01URL}">{text:Link01Title}</a><a href="{text:Link02URL}">{text:Link02Title}</a><a href="{text:Link03URL}">{text:Link03Title}</a><a href="{text:Link04URL}">{text:Link04Title}</a>
                 </div>
                 <div class="description">
                     {block:Description}{Description}{/block:Description}

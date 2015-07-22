@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="lt-ie10 lt-ie9"> <![endif]-->
+<!--[if IE 9]><html class="lt-ie10"> <![endif]-->
+<!--[if gt IE 9]><!--> <html lang="en-US"> <!--<![endif]-->
+
+<head>
+
+    <!--- colors --->
+    <meta name="color:Background" content="#ffffff" />
+    <meta name="color:Text" content="#5c5c5c" />
+    <meta name="color:Blockquote" content="#f5f5f5" />
+    <meta name="color:PostNotes" content="#f5f5f5" />
+    <meta name="color:Accent1" content="#8dd3ff" />
+    <meta name="color:Bold" content="#8dd3ff" />
+    <meta name="color:Tags" content="#919191" />
+    <meta name="color:TagsHover" content="#e6ff8d" />
+    <meta name="color:Link" content="#5c5c5c" />
+    <meta name="color:LinkHover" content="#8dd3ff" />
+    <meta name="color:Menu" content="#f7f7f7" />
+    <meta name="color:MenuText" content="#919191" />
+    
+    
+	<!--- menu --->
+	<meta name="text:Link01Title" content="link 01" />
+    <meta name="text:Link01URL" content="http://link 01" />
+ 
+    <meta name="text:Link02Title" content="link 02" />
+    <meta name="text:Link02URL" content="http://link 02" />
+
+    <meta name="text:Link03Title" content="link 03" />
+    <meta name="text:Link03URL" content="http://link 03" />
+
+    <meta name="text:Link04Title" content="link 04" />
+    <meta name="text:Link04URL" content="http://link 04" />
+    
+    
+    <!--- images --->
+    <meta name="image:Background" content="" />
+    <meta name="image:Sidebar" content="https://secure.static.tumblr.com/e3ad4fde766cc1f436b629b7ba58b379/xzqqn0j/FvInrrg4l/tumblr_static_21v2gjwxgwhwcwkwcg48kgggo.png" />
+    
+
+    <!--- fonts --->
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800&subset=latin,cyrillic-ext,latin-ext,cyrillic,greek-ext,greek,vietnamese' rel='stylesheet' type='text/css'>
+
+
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	
+	<link rel="shortcut icon" href="{Favicon}">
+	
+	<script type="text/javascript"src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.1/jquery.min.js"></script>
+    <script>
+    $(document).ready(function() {
+    	//
+    //When you click on a link with class of poplight and the href starts with a # 
+    $('a.poplight[href^=#]').click(function() {
+        var popID = $(this).attr('rel'); //Get Popup Name
+        var popURL = $(this).attr('href'); //Get Popup href to define size
+    
+        //Pull Query & Variables from href URL
+        var query= popURL.split('?');
+        var dim= query[1].split('&');
+        var popWidth = dim[0].split('=')[1]; //Gets the first query string value
+    
+        //Fade in the Popup and add close button
+        $('#' + popID).fadeIn().css({ 'width': Number( popWidth ) }).prepend('<a href="#" class="close"></a>');
+    
+        //Define margin for center alignment (vertical   horizontal) - we add 80px to the height/width to accomodate for the padding  and border width defined in the css
+        var popMargTop = ($('#' + popID).height() + 80) / 2;
+        var popMargLeft = ($('#' + popID).width() + 80) / 2;
+    
+        //Apply Margin to Popup
+        $('#' + popID).css({
+            'margin-top' : -popMargTop,
+            'margin-left' : -popMargLeft
+        });
+    
+        //Fade in Background
+        $('body').append('<div id="fade"></div>'); //Add the fade layer to bottom of the body tag.
+        $('#fade').css({'filter' : 'alpha(opacity=10)'}).fadeIn(); //Fade in the fade layer - .css({'filter' : 'alpha(opacity=10)'}) is used to fix the IE Bug on fading transparencies 
+    
+        return false;
+    });
+    
+    //Close Popups and Fade Layer
+    $('a.close, #fade').live('click', function() { //When clicking on the close or fade layer...
+        $('#fade , .popup_block').fadeOut(function() {
+            $('#fade, a.close').remove();  //fade them both out
+        });
+        return false;
+    });
+    
+    });
+    </script>
+
+                            <title>{Title}</title>
+
+</head>
+
+<style>
+
+    /* base */
+    body {
+        color: {color:Text};
+        background: {color:Background} url('{image:Background}');
+        font-family: 'Open Sans', sans-serif;
+        font-size: 9px;
+        line-height: 17px;
+    }
+    
+    blockquote {
+        border-left: 3px solid;
+        border-color: {color:Blockquote};
+        margin-left: 5px;
+        padding: 0px 0px 0px 5px;
+        width: 480px;
+    }
+    
+    blockquote sub, blockquote sub sub, blockquote small, blockquote small small {
+        font-size: 9px;
+    }
+    
+    a, a:link, a:visited, a:active {
+        text-decoration: none;
+        color: {color:Link};
+        -webkit-transition: all 0.7s ease;
+        -moz-transition: all 0.7s ease;
+        -ms-transition: all 0.7s ease;
+        -o-transition: all 0.7s ease;
+        transition: all 0.7s ease;
+    }
+    
+    a:hover {
+        color: {color:LinkHover};
+    }
+    
+    b, bold, strong {
+        color: {color:Bold};
+    }
+    
+    a b, b a {
+        color: {color:Bold};
+    }
+    
+    .credit {
+        bottom: 10px;
+        right: 10px;
+        position: fixed;
+    }
+    
+    .credit a {
+        padding: 3px 3px 3px 5px;
+        font-family: 'Open Sans', sans-serif;
+        font-size: 10px;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        font-weight: 600;
+        color: {color:Accent1};
+    }
+    
+    .credit a:hover {
+        color: {color:Text};
+    }
+    
+    /* structure */
+    .base {
+        width: 770px;
+        margin-top: 20px;
+        text-align: justify;
+    }
+    
+    .column {
+        width: 198px;
+        float: right;
+    }
+    
+    .content {
+        width: 500px;
+        float: left;
+    }
+    
+    
+    /* column */
+    .fixed {
+        width: 198px;
+        position: fixed;
+    }
+    
+    .menu {
+        width: 198px;
+        margin: 0;
+    }
+    
+    .menu a {
+        width: 54px;
+        padding: 5px;
+        background: {color:Menu};
+        color: {color:MenuText};
+        display: inline-block;
+        margin: 1px;
+        line-height: 16px;
+        text-align: center;
+    }
+    
+    .menu a:hover {
+        background: {color:Background};
+    }
+    
+    .description {
+        width: 196px;
+        text-align: justify;
+        margin: 5px 1px;
+    }
+    
+    img#main {
+        width: 196px;
+        margin: 0;
+    }
+    
+    
+    /* pagination */
+    .pages {
+        padding: 5px 10px;
+        line-height: 14px;
+        background: {color:Menu};
+        width: auto;
+        display: inline-block;
+        color: {color:MenuText};
+        margin-top: 10px;
+        text-align: center;
+    }
+    
+    .pageslinks a {
+        padding: 5px 10px;
+        line-height: 14px;
+        background: {color:Menu};
+        width: auto;
+        display: inline-block;
+        margin-top: 1px;
+        margin-left: 1px;
+        color: {color:MenuText};
+    }
+    
+    .pageslinks a:hover {
+        background: {color:Background};
+    }
+    
+    
+    /* posts */
+    .box {
+        width: 500px;
+        margin-bottom: 40px;
+    }
+    
+    div#postnotes li {
+        width: 489px;
+        padding: 5px;
+        border-bottom: 1px solid;
+        border-color: {color:PostNotes};
+        margin-bottom: 1px;
+        list-style-type: none;
+        margin-left: -40px;
+    }
+    
+    div#postnotes li img {
+        margin-right: 5px;
+        width: 0px;
+    }
+    
+    a#date {
+        line-height: 0px;
+        padding: 6px;
+        background: {color:PostNotes};
+        color: {color:MenuText};
+    }
+    
+    a#date:hover {
+        background: {color:Background};
+    }
+    
+    a#notecount {
+        line-height: 0px;
+        padding: 6px;
+        color: {color:Text};
+    }
+    
+    a#notecount:hover {
+        color: {color:Accent1};
+    }
+    
+    .information {
+        margin-top: 2px;
+        width: 500px;
+        display: block;
+    }
+    
+    .sources {
+        float: right;
+        display: inline;
+    }
+    
+    .sources a {
+        border-bottom: 1px solid;
+        border-color: {color:Background};
+        margin: 0 3px;
+        color: {color:Text};
+    }
+    
+    .sources a:hover {
+        border-color: {color:Accent1};
+    }
+    
+    .tags {
+        width: 500px;
+        margin-top: 5px;
+        text-transform: uppercase;
+        font-size: 8px;
+        letter-spacing: 1px;
+        text-align: justify;
+    }
+    
+    .tags a {
+        color: {color:Tags};
+        margin: 0 5px;
+        border-bottom: 1px solid;
+        border-color: {color:Background};
+        padding: 0 0 0 2px;
+    }
+    
+    .tags a:hover {
+        border-bottom: 1px solid;
+        border-color: {color:TagsHover};
+    }
+    
+    /* asks */
+    .questionout {
+        width: 500px;
+        display: block;
+        margin-bottom: 5px;
+    }
+    
+    .questionin {
+        height: auto;
+        display: block;
+        text-align: justify;
+        width: 481px;
+        background: {color:Blockquote};
+        margin-top: 2px;
+        padding: 10px;
+    }
+    
+    img.questionimg {
+        width: 30px;
+        margin: -10px 10px 0px -10px;
+        display: inline-block;
+        border: 5px solid;
+        border-color: {color:Background};
+    }
+    
+    
+    .answer {
+        width: 500px;
+        margin: 1px;
+        text-align: justify;
+        display: block;
+    }
+    
+    
+    /* audio */
+    #music {
+        min-height: 50px;
+        display: block;
+        position: relative;
+        float: right;
+        width: 420px;
+    }
+    
+    #paudiobox {
+        width: 33px; 
+        float: left; 
+        height: 33px; 
+        display: inline-block;
+        
+    }
+        
+    #paudioplay {
+        width: 27px; 
+        height: 27px; 
+        overflow: hidden; 
+        {block:Posts}{block:Audio}{block:AlbumArt}background: url('{AlbumArtURL}'){/block:AlbumArt};{/block:Audio}{/block:Posts} 
+        border: 5px solid;
+        border-color: {color:Menu};
+    }
+    
+    #paudiocont {
+        width: 440px; 
+        float: left; 
+        height: 33px; 
+        display: inline-block; 
+        text-transform: uppercase; 
+        font-size: 8px; 
+        letter-spacing: 1px;
+        text-align: left;
+        line-height: 15px;
+        margin-left: 10px;
+        margin-top: 3px;
+    }
+    
+    
+    /* link */
+    a.url {
+        padding: 3px 5px 3px 5px;
+        color: {color:Text};
+        background: {color:TagsHover};
+        font-size: 10px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        margin-top: 10px;
+    }
+    
+    
+    /* chat */
+    .chat li {
+        list-style-type: none;
+        border-radius: 0.2em;
+        margin: 1px;
+        padding: 2px 4px 2px 4px;
+        display: block;
+        font-size: 8px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        font-weight: 600;
+    }
+    
+    ul.chat {
+        list-style-type: none;
+        margin: 0px;
+        padding: 0px;
+    }
+    
+    li.odd {
+        font-style: bold;
+    }
+    
+    .chat .odd {
+        background: {color:Blockquote};
+        display: block;
+    }
+    
+    
+    /* quote */
+    .quote {
+        display: inline;
+        font-size: 10px;
+        text-transform: uppercase;
+    }
+    
+    .arrow {
+        font-size: 26px;
+        color: {color:Text};
+        display: block;
+        margin-bottom: -7px;
+        text-align: center;
+    }
+    
+    span.srce {
+        background: {color:Text};
+        padding: 5px;
+        width: auto;
+        text-align: center;
+        margin-bottom: 10px;
+    }
+    
+    
+    /* pop up */
+    #fade { /*--Transparent background layer--*/
+    	display: none; /*--hidden by default--*/
+    	background: #000;
+    	position: fixed; left: 0; top: 0;
+    	width: 100%; height: 100%;
+    	opacity: .80;
+    	z-index: 9999;
+    }
+    .popup_block{
+    	display: none; /*--hidden by default--*/
+    	background: #fff;
+    	padding: 20px;
+    	float: left;
+    	position: fixed;
+    	top: 50%; left: 50%;
+    	z-index: 99999;
+    	/*--CSS3 Box Shadows--*/
+    	-webkit-box-shadow: 0px 0px 20px #000;
+    	-moz-box-shadow: 0px 0px 20px #000;
+    	box-shadow: 0px 0px 20px #000;
+    	width: 500px;
+    }
+    
+    img.btn_close {
+    	float: right;
+    	margin: -55px -55px 0 0;
+    }
+    /*--Making IE6 Understand Fixed Positioning--*/
+    *html #fade {
+    	position: absolute;
+    }
+    *html .popup_block {
+    	position: absolute;
+    }
+    
+    /* themes */
+    .div {
+        padding: 7px;
+        background: {color:Accent1};
+        color: #fff;
+        text-transform: lowercase;
+        font-size: 14px;
+        font-weight: 600;
+        display: block;
+        width: auto;
+    }
+    
+    a#but {
+        padding: 7px;
+        background: #171717;
+        color: #fff;
+        text-transform: lowercase;
+        font-size: 14px;
+        font-weight: 600;
+        margin: 1px;
+    }
+    
+</style>
+ 
+<body>
+<div class="credit"><a href="http://annparkins.tumblr.com/" target="_blank"><i class="fa fa-paw"></i></a></div>
+    
+    <center>
+        <div class="base">
+        
+            <!--- sidebar ---><div class="column"><div class="fixed">
+            <center><img src="{image:Sidebar}" id="main" /></center>
+                <div class="menu">
+                    <a href="/">index</a><a href="/message">message</a><a href="{text:Link01URL}">{text:Link01Title}</a><a href="{text:Link02URL}">{text:Link02Title}</a><a href="{text:Link03URL}">{text:Link03Title}</a><a href="{text:Link04URL}">{text:Link04Title}</a>
+                </div>
+                <div class="description">
+                    {block:Description}{Description}{/block:Description}
+                </div>
+                <div style="text-align: right;">
+                {block:Pagination}
+                <div class="pages">page {CurrentPage} of {TotalPages}</div>
+                <div class="pageslinks">
+                {block:PreviousPage}<a href="{PreviousPage}"/>«</a>{/block:PreviousPage}{block:NextPage}<a href="{NextPage}"/>»</a>{/block:NextPage}</div>
+                {/block:Pagination}
+                </div>
+            </div></div><!--- sidebar --->
+            
+            <!--- posts ---><div class="content">
+            
+            {block:Posts}<div class="box">
+                
+                {block:Text}
+                {block:Title}<h1> {Title}</h1>{/block:Title}
+                {Body}
+                {/block:Text}
+                
+                {block:Answer}
+                <div class="questionout">
+                    <div class="questionin">
+                    <a href="{AskerURL}"><img src="{AskerPortraitURL-30}" class="questionimg" align="left" /></a>
+                    <div class="texting">{Question}</div></div>
+                </div>
+                <div class="answer">{Answer}</div>
+                {/block:Answer}
+            
+                {block:Photo}
+                <img src="{PhotoURL-500}" width="500px" />
+                {block:Caption}{Caption}{/block:Caption}
+                {/block:Photo}
+                
+                
+                {block:Photoset}
+                {Photoset-500}
+                {block:Caption}{Caption}{/block:Caption}
+                {/block:Photoset}
+                
+                {block:Quote}<center>
+                <i class="fa fa-quote-left"></i><div class="quote"> {Quote} </div><i class="fa fa-quote-right"></i>
+                {block:Source}<center>
+                {Source}
+                </center>{/block:Source}
+                </center>{/block:Quote}
+                
+                
+                {block:Link}
+                <a href="{URL}" class="url">{Name}</a>
+                {block:Description}{Description}{/block:Description}
+                {/block:Link}
+            
+                {block:Chat}
+                <div class="chat">
+                <li class="chats">
+                            {block:Title}
+                                <h1><a href="{Permalink}">{Title}</a></h1>
+                            {/block:Title}
+    
+                            <ul class="chat">
+                                {block:Lines}
+                                    <li class="{Alt} user_{UserNumber}">
+                                        {block:Label}
+                                            <span class="label">{Label}</span>
+                                        {/block:Label}{Line}
+                                    </li>
+                                {/block:Lines}
+                            </ul>
+                </li>
+                </div>
+                {/block:Chat}
+                
+                
+                {block:Audio}
+                <div style="min-height: 50px;">
+                <div id="paudiobox">
+                <div id="paudioplay">{block:AudioPlayer}{AudioPlayer}{/block:AudioPlayer}</div>
+                </div>
+                <div id="paudiocont">
+                {block:PlayCount}{PlayCountWithLabel}{/block:PlayCount}<br>      {block:TrackName}{TrackName}{/block:TrackName} // {block:Artist}{Artist}{/block:Artist}
+                        </div>
+                </div>
+                {block:Caption}{Caption}{/block:Caption}
+                {/block:Audio}
+                
+                
+                {block:Video}
+                {Video-500}
+                {block:Caption}{Caption}{/block:Caption}
+                {/block:Video}
+                
+                
+                
+        <div class="information">
+        {block:Date}<a href="{Permalink}" id="date">{TimeAgo}</a>{/block:Date} {block:NoteCount}<a href="{Permalink}" id="notecount">+{NoteCount}</a>{/block:NoteCount}
+        <div class="sources">
+        {block:RebloggedFrom}<a href="{ReblogParentURL}" target="_blank">via</a>{/block:RebloggedFrom}{block:ContentSource} <a href="{SourceURL}" target="_blank">source</a>{/block:ContentSource}
+        </div>
+        </div>
+        {block:HasTags}<div class="tags">{block:Tags}<a href="{TagURL}">{Tag}</a> {/block:Tags}</div>{/block:HasTags}
+        
+        
+                {block:PostNotes}<div id="postnotes">{PostNotes}</div>{/block:PostNotes}
+                </div>{/block:Posts}
+                
+            </div><!--- posts --->
+            
+        </div>
+    </center>
+    
+    
+</body>
+    
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
